@@ -4,3 +4,12 @@
     name:
       - epel-release
     state: present
+
+- name: Install python-pip, python-devel, gcc, nginx
+  yum:
+    name:
+      - python-pip
+      - python-devel
+      - gcc
+      - nginx
+    state: present
