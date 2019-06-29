@@ -4,3 +4,9 @@
     name: myproject
     state: started
     enabled: yes
+
+- name: Start and enable the nginx service.
+  service:
+    name: nginx
+    state: started
+    enabled: yes

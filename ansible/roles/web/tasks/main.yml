@@ -79,3 +79,15 @@
     src: myproject.service
     dest: /etc/systemd/system
   notify: Start and enable the myproject service.
+
+- name: Copy the nginx.conf template into the VM.
+  template:
+    src: nginx.conf
+    dest: /etc/nginx
+
+- name: Add the nginx user to myprojectuser group.
+  user:
+    name: nginx
+    groups: myprojectuser
+    append: yes
+  notify: Start and enable the nginx service.
