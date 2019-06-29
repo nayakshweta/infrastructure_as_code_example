@@ -18,3 +18,9 @@
   group: 
     name: myprojectuser
     state: present
+
+- name: Create the project user myprojectuser.
+  user:
+    name: myprojectuser
+    uid: 1040
+    group: myprojectuser
