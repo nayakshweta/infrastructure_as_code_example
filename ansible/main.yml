@@ -1,0 +1,8 @@
+---
+- name: Configure the server
+  hosts: all
+  roles:
+    - web
+  remote_user: root
+  become: yes
+...
