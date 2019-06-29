@@ -5,13 +5,14 @@
       - epel-release
     state: present
 
-- name: Install python-pip, python-devel, gcc, nginx
+- name: Install python-pip, python-devel, gcc, nginx, git
   yum:
     name:
       - python-pip
       - python-devel
       - gcc
       - nginx
+      - git
     state: present
 
 - name: Create the project group myprojectuser.
@@ -56,23 +57,15 @@
     recurse: yes
     mode: 0770
 
-- name: Copy myproject.py flask app template into the VM.
-  template:
-    src: myproject.py
+- name: Clone the example flaskr webapp into the VM.
+  git:
+    repo: https://github.com/nayakshweta/infrastructure_as_code_example.git
     dest: /home/myprojectuser/myproject
-    owner: myprojectuser
-    group: myprojectuser
-    directory_mode: yes
-    mode: u=rwx,g=x
 
-- name: Copy wsgi.py entry point template into the VM.
-  template:
-    src: wsgi.py
-    dest: /home/myprojectuser/myproject
-    owner: myprojectuser
-    group: myprojectuser
-    directory_mode: yes
-    mode: u=rwx,g=x
+- name: Initialize the db for flask.
+  command: /home/myprojectuser/myprojectenv/bin/python flask_init_db.py
+  args:
+    chdir: /home/myprojectuser/myproject/webapp
 
 - name: Copy the service template file for myproject into /etc/systemd/system.
   template:
