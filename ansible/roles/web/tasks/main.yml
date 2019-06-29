@@ -24,3 +24,8 @@
     name: myprojectuser
     uid: 1040
     group: myprojectuser
+
+- name: Install virtualenv
+  pip:
+    name: virtualenv
+
