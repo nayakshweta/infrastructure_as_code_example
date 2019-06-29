@@ -31,3 +31,11 @@
 
 - name: Create virtualenv
   shell: /usr/bin/virtualenv /home/myprojectuser/myprojectenv
+
+- name: Assign the owner and group myprojectuser rwx permissions on the user home directory.
+  file:
+    path: /home/myprojectuser
+    owner: myprojectuser
+    group: myprojectuser
+    recurse: yes
+    mode: 0770
