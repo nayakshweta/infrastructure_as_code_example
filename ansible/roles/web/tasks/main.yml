@@ -5,13 +5,14 @@
       - epel-release
     state: present
 
-- name: Install python-pip, python-devel, gcc, nginx
+- name: Install python-pip, python-devel, gcc, nginx, git
   yum:
     name:
       - python-pip
       - python-devel
       - gcc
       - nginx
+      - git
     state: present
 
 - name: Create the project group myprojectuser.
@@ -32,14 +33,6 @@
 - name: Create virtualenv
   shell: /usr/bin/virtualenv /home/myprojectuser/myprojectenv
 
-- name: Assign the owner and group myprojectuser rwx permissions on the user home directory.
-  file:
-    path: /home/myprojectuser
-    owner: myprojectuser
-    group: myprojectuser
-    recurse: yes
-    mode: 0770
-
 - name: Install flask and gunicorn in myprojectenv
   pip:
     name: 
@@ -56,23 +49,24 @@
     recurse: yes
     mode: 0770
 
-- name: Copy myproject.py flask app template into the VM.
-  template:
-    src: myproject.py
+- name: Clone the example flaskr webapp into the VM.
+  git:
+    repo: https://github.com/nayakshweta/infrastructure_as_code_example.git
     dest: /home/myprojectuser/myproject
-    owner: myprojectuser
-    group: myprojectuser
-    directory_mode: yes
-    mode: u=rwx,g=x
+    version: flaskr-webapp
 
-- name: Copy wsgi.py entry point template into the VM.
-  template:
-    src: wsgi.py
-    dest: /home/myprojectuser/myproject
+- name: Initialize the db for flask.
+  command: /home/myprojectuser/myprojectenv/bin/python flask_init_db.py
+  args:
+    chdir: /home/myprojectuser/myproject/webapp
+
+- name: Assign the owner and group myprojectuser rwx permissions on the user home directory.
+  file:
+    path: /home/myprojectuser
     owner: myprojectuser
     group: myprojectuser
-    directory_mode: yes
-    mode: u=rwx,g=x
+    recurse: yes
+    mode: 0770
 
 - name: Copy the service template file for myproject into /etc/systemd/system.
   template:

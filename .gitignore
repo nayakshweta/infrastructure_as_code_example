@@ -53,3 +53,8 @@ test/vagrant-spec/boxes/*.box
 
 #ansible
 *.retry
+
+# sqlite
+*.sqlite
+
+.vscode/
