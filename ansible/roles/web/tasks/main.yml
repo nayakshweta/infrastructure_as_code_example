@@ -39,3 +39,10 @@
     group: myprojectuser
     recurse: yes
     mode: 0770
+
+- name: Install flask and gunicorn in myprojectenv
+  pip:
+    name: 
+      - flask
+      - gunicorn
+    virtualenv: /home/myprojectuser/myprojectenv
