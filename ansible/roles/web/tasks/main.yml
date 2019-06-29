@@ -46,3 +46,12 @@
       - flask
       - gunicorn
     virtualenv: /home/myprojectuser/myprojectenv
+
+- name: Create directory myproject.
+  file:
+    path: /home/myprojectuser/myproject
+    state: directory
+    owner: myprojectuser
+    group: myprojectuser
+    recurse: yes
+    mode: 0770
