@@ -64,3 +64,12 @@
     group: myprojectuser
     directory_mode: yes
     mode: u=rwx,g=x
+
+- name: Copy wsgi.py entry point template into the VM.
+  template:
+    src: wsgi.py
+    dest: /home/myprojectuser/myproject
+    owner: myprojectuser
+    group: myprojectuser
+    directory_mode: yes
+    mode: u=rwx,g=x
