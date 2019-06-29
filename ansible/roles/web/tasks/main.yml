@@ -29,3 +29,5 @@
   pip:
     name: virtualenv
 
+- name: Create virtualenv
+  shell: /usr/bin/virtualenv /home/myprojectuser/myprojectenv
