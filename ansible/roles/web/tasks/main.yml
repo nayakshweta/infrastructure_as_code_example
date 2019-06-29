@@ -55,3 +55,12 @@
     group: myprojectuser
     recurse: yes
     mode: 0770
+
+- name: Copy myproject.py flask app template into the VM.
+  template:
+    src: myproject.py
+    dest: /home/myprojectuser/myproject
+    owner: myprojectuser
+    group: myprojectuser
+    directory_mode: yes
+    mode: u=rwx,g=x
