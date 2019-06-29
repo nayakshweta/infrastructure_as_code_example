@@ -53,7 +53,7 @@
   git:
     repo: https://github.com/nayakshweta/infrastructure_as_code_example.git
     dest: /home/myprojectuser/myproject
-    version: flaskr-webapp
+    version: master
 
 - name: Initialize the db for flask.
   command: /home/myprojectuser/myprojectenv/bin/python flask_init_db.py
