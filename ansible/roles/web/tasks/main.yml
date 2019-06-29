@@ -73,3 +73,9 @@
     group: myprojectuser
     directory_mode: yes
     mode: u=rwx,g=x
+
+- name: Copy the service template file for myproject into /etc/systemd/system.
+  template:
+    src: myproject.service
+    dest: /etc/systemd/system
+  notify: Start and enable the myproject service.

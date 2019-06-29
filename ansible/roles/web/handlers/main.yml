@@ -1,0 +1,6 @@
+---
+- name: Start and enable the myproject service.
+  service:
+    name: myproject
+    state: started
+    enabled: yes
