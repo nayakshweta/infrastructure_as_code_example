@@ -13,3 +13,8 @@
       - gcc
       - nginx
     state: present
+
+- name: Create the project group myprojectuser.
+  group: 
+    name: myprojectuser
+    state: present
