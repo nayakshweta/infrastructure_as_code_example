@@ -1,4 +1,4 @@
-import sqlite3
+import sqlalchemy
 
 import click
 from flask import current_app, g
@@ -11,11 +11,10 @@ def get_db():
     again.
     """
     if 'db' not in g:
-        g.db = sqlite3.connect(
-            current_app.config['DATABASE'],
-            detect_types=sqlite3.PARSE_DECLTYPES
+        engine = sqlalchemy.create_engine(
+            "sqlite:///" + current_app.config['DATABASE']
         )
-        g.db.row_factory = sqlite3.Row
+        g.db = engine.connect()
 
     return g.db
 
@@ -35,7 +34,9 @@ def init_db():
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
-        db.executescript(f.read().decode('utf8'))
+        commands = f.readlines()
+        for command in commands:
+            db.execute(command)
 
 
 @click.command('init-db')
