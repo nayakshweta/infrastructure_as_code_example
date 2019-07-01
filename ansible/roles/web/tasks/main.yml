@@ -33,11 +33,12 @@
 - name: Create virtualenv
   shell: /usr/bin/virtualenv /home/myprojectuser/myprojectenv
 
-- name: Install flask and gunicorn in myprojectenv
+- name: Install flask, gunicorn and sqlalchemy in myprojectenv
   pip:
     name: 
       - flask
       - gunicorn
+      - sqlalchemy
     virtualenv: /home/myprojectuser/myprojectenv
 
 - name: Create directory myproject.
@@ -53,7 +54,7 @@
   git:
     repo: https://github.com/nayakshweta/infrastructure_as_code_example.git
     dest: /home/myprojectuser/myproject
-    version: master
+    version: postgres
 
 - name: Initialize the db for flask.
   command: /home/myprojectuser/myprojectenv/bin/python flask_init_db.py

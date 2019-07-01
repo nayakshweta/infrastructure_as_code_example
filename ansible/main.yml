@@ -1,8 +1,15 @@
 ---
-- name: Configure the server
-  hosts: all
+- name: Configure the web server
+  hosts: web
   roles:
     - web
+  remote_user: root
+  become: yes
+
+- name: Configure the db server
+  hosts: db
+  roles:
+    - db
   remote_user: root
   become: yes
 ...

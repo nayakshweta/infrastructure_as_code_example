@@ -1,2 +1,9 @@
 ---
-hosts: all
+all:
+  children:
+    webservers:
+      hosts:
+        web:
+    dbservers:
+      hosts:
+        db:
