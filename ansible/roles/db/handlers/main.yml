@@ -1,3 +1,9 @@
 ---
 - name: Initialize postgres db
   command: postgresql-setup initdb
+
+- name: Start and enable postgresql service.
+  service: 
+    name: postgresql
+    state: started
+    enabled: yes

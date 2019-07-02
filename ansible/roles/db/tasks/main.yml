@@ -4,6 +4,7 @@
     name:
       - postgresql-server
     state: present
-  notify: Initialize postgres db
-
+  notify: 
+    - Initialize postgres db
+    - Start and enable postgresql service.
 
