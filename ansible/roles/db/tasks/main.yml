@@ -25,3 +25,11 @@
   pip:
     name: psycopg2-binary
 
+- meta: flush_handlers
+
+- name: Add postgres user with password.
+  become_user: postgres
+  postgresql_user:
+    name: user1
+    password: password1
+
