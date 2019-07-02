@@ -4,3 +4,6 @@
     name:
       - postgresql-server
     state: present
+  notify: Initialize postgres db
+
+

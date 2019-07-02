@@ -1,0 +1,3 @@
+---
+- name: Initialize postgres db
+  command: postgresql-setup initdb
