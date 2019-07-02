@@ -8,3 +8,8 @@
     - Initialize postgres db
     - Start and enable postgresql service.
 
+- name: Install packages - epel-release
+  yum:
+    name:
+      - epel-release
+    state: present
