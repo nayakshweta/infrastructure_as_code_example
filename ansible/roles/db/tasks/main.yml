@@ -13,3 +13,15 @@
     name:
       - epel-release
     state: present
+
+- name: Install python-pip and python-psycopg2
+  yum:
+    name:
+      - python-pip
+      - python-psycopg2
+    state: present
+
+- name: Install psycopg2-binary pip package
+  pip:
+    name: psycopg2-binary
+
