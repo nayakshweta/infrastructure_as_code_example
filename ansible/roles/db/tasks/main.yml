@@ -33,3 +33,7 @@
     name: user1
     password: password1
 
+- name: Create postgres database flaskrdb
+  become_user: postgres
+  postgresql_db:
+    name: flaskrdb
