@@ -5,7 +5,7 @@
       - epel-release
     state: present
 
-- name: Install python-pip, python-devel, gcc, nginx, git
+- name: Install python-pip, python-devel, gcc, nginx, git, psycopg2
   yum:
     name:
       - python-pip
@@ -13,6 +13,7 @@
       - gcc
       - nginx
       - git
+      - python-psycopg2
     state: present
 
 - name: Create the project group myprojectuser.
@@ -33,12 +34,13 @@
 - name: Create virtualenv
   shell: /usr/bin/virtualenv /home/myprojectuser/myprojectenv
 
-- name: Install flask, gunicorn and sqlalchemy in myprojectenv
+- name: Install flask, gunicorn, sqlalchemy and psycopg2-binary in myprojectenv
   pip:
     name: 
       - flask
       - gunicorn
       - sqlalchemy
+      - psycopg2-binary
     virtualenv: /home/myprojectuser/myprojectenv
 
 - name: Create directory myproject.
